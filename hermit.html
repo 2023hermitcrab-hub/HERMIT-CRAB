@@ -25,6 +25,21 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
 .btn:hover{background:#e9b835;transform:translateY(-1px)}
 .footer{text-align:center;margin-top:32px;padding-top:20px;border-top:1px solid #222;color:#555;font-size:12px;line-height:1.8}
 .footer a{color:#d4a530;text-decoration:none}
+
+/* WeChat jump guide */
+#wechat-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;justify-content:center;align-items:center}
+#wechat-overlay.show{display:flex}
+.guide-box{background:#fff;border-radius:16px;padding:32px 24px 24px;max-width:340px;width:90%;text-align:center}
+.guide-box h3{color:#222;font-size:18px;margin-bottom:12px}
+.guide-box p{color:#666;font-size:14px;line-height:1.7;margin-bottom:4px}
+.guide-box .highlight{color:#d4a530;font-weight:600}
+.guide-box .step{background:#f5f5f5;border-radius:10px;padding:12px;margin:12px 0;color:#333;font-size:13px;line-height:1.6}
+.guide-box .step strong{color:#d4a530}
+.guide-box .btn-close{background:#d4a530;color:#0d0d0d;border:none;padding:10px 24px;border-radius:8px;font-size:15px;font-weight:600;margin-top:12px;cursor:pointer}
+.guide-box .btn-close:active{background:#c49a2a}
+.arrow-guide{display:none;position:fixed;top:8px;right:12px;z-index:9998;text-align:right}
+.arrow-guide.show{display:block}
+.arrow-guide img{width:140px;height:auto}
 </style>
 </head>
 <body>
@@ -67,5 +82,31 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
  <p style="font-size:11px;color:#444">本页面为官方商品直达导航页</p>
 </div>
 </div>
+  <!-- WeChat overlay -->
+  <div id="wechat-overlay">
+    <div class="guide-box">
+      <h3>🦀 欢迎访问奇居蟹官方商城</h3>
+      <p>为获得更好的购物体验，请使用<span class="highlight">系统浏览器</span>打开本页面</p>
+      <div class="step">
+        <strong>①</strong> 点击右上角 <strong>···</strong><br>
+        <strong>②</strong> 选择「<strong>在浏览器中打开</strong>」
+      </div>
+      <p style="font-size:12px;color:#999">或复制链接到 Safari / Chrome 打开</p>
+      <button class="btn-close" onclick="closeGuide()">我知道了，继续浏览</button>
+    </div>
+  </div>
+
+  <script>
+  function isWechat() {
+    var ua = navigator.userAgent.toLowerCase();
+    return ua.indexOf('micromessenger') > -1;
+  }
+  function closeGuide() {
+    document.getElementById('wechat-overlay').classList.remove('show');
+  }
+  if (isWechat()) {
+    document.getElementById('wechat-overlay').classList.add('show');
+  }
+  </script>
 </body>
 </html>
