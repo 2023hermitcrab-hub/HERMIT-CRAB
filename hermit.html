@@ -1,4 +1,6 @@
-<html lang="zh-CN"><head>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HERMIT CRAB 奇居蟹 | 官方商城</title>
@@ -26,6 +28,15 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
 .footer{text-align:center;margin-top:32px;padding-top:20px;border-top:1px solid #222;color:#555;font-size:12px;line-height:1.8}
 .footer a{color:#d4a530;text-decoration:none}
 
+/* 新增：平台切换按钮样式 */
+.tab-bar{display:flex;gap:8px;margin-bottom:20px;}
+.tab-btn{flex:1;padding:10px 0;border:none;border-radius:8px;background:#1a1a1a;color:#999;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.tab-btn:hover{background:#2a2a2a;}
+.tab-btn.active{background:#d4a530;color:#0d0d0d;}
+/* 新增：内容区域默认隐藏 */
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
 /* WeChat jump guide */
 #wechat-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;justify-content:center;align-items:center}
 #wechat-overlay.show{display:flex}
@@ -51,7 +62,16 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
  <h2>🦀 寄居蟹卷烟器</h2>
  <p>20年制造经验 · 4.9/5好评 · 正品保障 · 官方售后</p>
 </div>
-<div class="section">
+
+<!-- 新增：平台切换按钮 -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab(0)">🏪 天猫旗舰店</button>
+  <button class="tab-btn" onclick="switchTab(1)">🛒 拼多多旗舰店</button>
+  <button class="tab-btn" onclick="switchTab(2)">📦 京东旗舰店</button>
+</div>
+
+<!-- 天猫内容 -->
+<div class="section tab-content active">
 <div class="section-title">🏪 天猫旗舰店</div>
 <div class="card"><div class="name">三代罗马脚5.5绿</div><a class="btn" href="https://detail.tmall.com/item.htm?id=953416875036" target="_blank">查看详情</a></div>
 <div class="card"><div class="name">二代罗马脚5.5绿</div><a class="btn" href="https://detail.tmall.com/item.htm?id=697144949192" target="_blank">查看详情</a></div>
@@ -62,7 +82,9 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
 <div class="card"><div class="name">螳螂臂6.5黑</div><a class="btn" href="https://detail.tmall.com/item.htm?id=758699535321" target="_blank">查看详情</a></div>
 <div class="card"><div class="name">螳螂臂7.8黑</div><a class="btn" href="https://detail.tmall.com/item.htm?id=725736674386" target="_blank">查看详情</a></div>
 </div>
-<div class="section">
+
+<!-- 拼多多内容 -->
+<div class="section tab-content">
 <div class="section-title">🛒 拼多多旗舰店</div>
 <div class="card"><div class="name">三代罗马脚5.5绿</div><a class="btn" href="https://mobile.yangkeduo.com/goods.html?goods_id=780709852141" target="_blank">查看详情</a></div>
 <div class="card"><div class="name">螳螂臂</div><a class="btn" href="https://mobile.yangkeduo.com/goods.html?goods_id=479643483872" target="_blank">查看详情</a></div>
@@ -70,13 +92,16 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
 <div class="card"><div class="name">二代有底盖</div><a class="btn" href="https://mobile.yangkeduo.com/goods.html?goods_id=418724324024" target="_blank">查看详情</a></div>
 <div class="card"><div class="name">二代罗马脚</div><a class="btn" href="https://mobile.yangkeduo.com/goods.html?goods_id=423474209691" target="_blank">查看详情</a></div>
 </div>
-<div class="section">
+
+<!-- 京东内容 -->
+<div class="section tab-content">
 <div class="section-title">📦 京东旗舰店</div>
 <div class="card"><div class="name">二代罗马脚</div><a class="btn" href="https://item.jd.com/10070584742127.html" target="_blank">查看详情</a></div>
 <div class="card"><div class="name">螳螂臂款</div><a class="btn" href="https://item.jd.com/10075959708246.html" target="_blank">查看详情</a></div>
 <div class="card"><div class="name">二代常规款</div><a class="btn" href="https://item.jd.com/10059569048162.html" target="_blank">查看详情</a></div>
 <div class="card"><div class="name">二代有底盖</div><a class="btn" href="https://item.jd.com/10059648301912.html" target="_blank">查看详情</a></div>
 </div>
+
 <div class="footer">
  <p>© HERMIT CRAB 奇居蟹 | 官方正品渠道</p>
  <p style="font-size:11px;color:#444">本页面为官方商品直达导航页</p>
@@ -106,6 +131,19 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
   }
   if (isWechat()) {
     document.getElementById('wechat-overlay').classList.add('show');
+  }
+
+  // 新增：平台切换功能
+  function switchTab(index) {
+    const btns = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    
+    btns.forEach((btn, i) => {
+      btn.classList.toggle('active', i === index);
+    });
+    contents.forEach((content, i) => {
+      content.classList.toggle('active', i === index);
+    });
   }
   </script>
 </body>
