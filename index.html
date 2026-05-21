@@ -76,6 +76,22 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
   <a href="?region=eu">🇪🇺 EU Store</a>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get('region');
+  if (region === 'eu') {
+    document.getElementById('us').style.display = 'none';
+    document.getElementById('eu').style.display = 'block';
+    document.querySelectorAll('.store-badge a').forEach(a => a.classList.remove('active'));
+    document.querySelectorAll('.store-badge a')[1].classList.add('active');
+  } else {
+    document.getElementById('us').style.display = 'block';
+    document.getElementById('eu').style.display = 'none';
+  }
+});
+</script>
+
 <!-- US Amazon -->
 <div class="section" id="us">
 <div class="section-title">🇺🇸 Amazon USA</div>
