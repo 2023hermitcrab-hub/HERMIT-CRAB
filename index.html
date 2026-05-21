@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,25 +7,32 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
 body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
-.container{max-width:420px;margin:0 auto}
+.bg-wrap{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
+.bg-wrap img{width:100%;height:100%;object-fit:cover}
+.container{max-width:420px;margin:0 auto;background:rgba(13,13,13,0.85);border-radius:16px;padding:16px;position:relative;z-index:1}
 .logo{font-size:28px;font-weight:800;color:#d4a530;text-align:center;margin:24px 0 4px;letter-spacing:2px}
 .logo span{color:#e94560}
+.logo img{width:50px;height:50px;border-radius:50%;vertical-align:middle;margin-right:8px}
 .subtitle{font-size:13px;text-align:center;color:#999;margin-bottom:24px}
-.qr-section{background:#1a1a1a;border-radius:16px;padding:20px;text-align:center;margin-bottom:20px;border:1px solid #2a2a2a}
+.social-bar{margin:12px 0 8px;text-align:center}
+.social-bar a{display:inline-block;color:#888;margin:4px 8px;font-size:13px;text-decoration:none;transition:color 0.2s}
+.social-bar a:hover{color:#d4a530}
+.qr-section{background:rgba(26,26,26,0.9);border-radius:16px;padding:20px;text-align:center;margin-bottom:0;margin-top:20px;border:1px solid #2a2a2a}
 .qr-section img{width:150px;height:150px;border-radius:8px;background:#fff;padding:8px}
 .qr-section .scan-text{color:#d4a530;font-size:14px;font-weight:600;margin-top:10px}
 .qr-section .scan-sub{color:#666;font-size:12px;margin-top:4px}
-.banner{background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:12px;padding:20px;text-align:center;margin-bottom:24px}
+.banner{background:linear-gradient(135deg,rgba(26,26,46,0.85),rgba(22,33,62,0.85)),url('https://raw.githubusercontent.com/2023hermitcrab-hub/HERMIT-CRAB/main/Banner%E8%83%8C%E6%99%AF%E5%9B%BE3.jpg');background-size:cover;background-position:center;border-radius:12px;padding:20px;text-align:center;margin-bottom:24px}
 .banner h2{color:#d4a530;font-size:18px;margin-bottom:6px}
-.banner p{color:#aaa;font-size:13px}
+.banner .p1{color:#ff6b6b;font-size:13px;font-weight:600;margin-bottom:4px}
+.banner .p2{color:#aaa;font-size:12px}
 .section{margin:20px 0}
 .section-title{font-size:15px;color:#d4a530;margin-bottom:12px;border-left:4px solid #d4a530;padding-left:12px;font-weight:600}
-.card{background:#1a1a1a;border-radius:10px;padding:14px;margin-bottom:10px;border:1px solid #2a2a2a;display:flex;justify-content:space-between;align-items:center;transition:all 0.2s}
+.card{background:rgba(26,26,26,0.9);border-radius:10px;padding:14px;margin-bottom:10px;border:1px solid #2a2a2a;display:flex;justify-content:space-between;align-items:center;transition:all 0.2s}
 .card:hover{border-color:#d4a530}
 .name{font-size:14px;color:#eee;flex:1}
 .name small{display:block;font-size:11px;color:#666;margin-top:2px}
 .badge{display:inline-block;background:#e94560;color:#fff;font-size:10px;padding:1px 6px;border-radius:3px;margin-left:6px;vertical-align:middle}
-.btn{background:#d4a530;color:#0d0d0d;padding:8px 14px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all 0.2s}
+.btn{background:#d4a530;color:#0d0d0d;padding:10px 18px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;transition:all 0.2s}
 .btn:hover{background:#e9b835;transform:translateY(-1px)}
 .btn-amz{background:#ff9900;color:#0d0d0d}
 .btn-amz:hover{background:#ffb84d}
@@ -33,8 +40,6 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
 .btn-eu:hover{background:#0066ff}
 .footer{text-align:center;margin-top:32px;padding-top:20px;border-top:1px solid #222;color:#555;font-size:12px;line-height:1.8}
 .footer a{color:#d4a530;text-decoration:none}
-.footer .social{margin:12px 0}
-.footer .social a{color:#888;margin:0 8px;font-size:13px}
 .store-badge{display:flex;gap:8px;margin-bottom:16px}
 .store-badge a{flex:1;text-align:center;padding:8px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;border:1px solid #333;color:#aaa;transition:all 0.2s}
 .store-badge a:hover{border-color:#d4a530;color:#d4a530}
@@ -42,19 +47,28 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
 </style>
 </head>
 <body>
+<div class="bg-wrap"><img src="https://raw.githubusercontent.com/2023hermitcrab-hub/HERMIT-CRAB/main/%E5%85%A8%E5%B1%8F%E8%83%8C%E6%99%AF2.jpg" alt="bg"></div>
 <div class="container">
-<div class="logo">HERMIT <span>CRAB</span></div>
+
+<div class="logo"><img src="https://raw.githubusercontent.com/2023hermitcrab-hub/HERMIT-CRAB/main/%E5%A4%B4%E5%83%8FLOGO.jpg">HERMIT <span>CRAB</span></div>
 <div class="subtitle">Premium Smoking Accessories · 4.9★ Rating</div>
 
-<div class="qr-section">
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://2023hermitcrab-hub.github.io/HERMIT-CRAB/" alt="Scan me">
-  <div class="scan-text">📱 Scan me</div>
-  <div class="scan-sub">Official Store · Support · Social</div>
+<div class="social-bar">
+  <a href="https://www.tiktok.com/@hermitcrabcomcn" target="_blank">🎵 TikTok</a>
+  <a href="https://www.instagram.com/hermitcrabchen" target="_blank">📷 Instagram</a>
+  <a href="https://www.pinterest.com/2023hermitcrab/" target="_blank">📌 Pinterest</a>
+  <a href="https://x.com/2023hermit63162" target="_blank">🐦 X</a>
+  <a href="https://www.facebook.com/hermit.crab.chen.2025" target="_blank">📘 Facebook</a>
+  <a href="https://www.reddit.com/r/HermitCrabSmokeClub/" target="_blank">🤖 Reddit</a>
+  <a href="https://www.youtube.com/@HailuChen-xe1yf" target="_blank">▶️ YouTube</a>
+  <a href="https://wa.me/8613790100786" target="_blank">💬 WhatsApp</a>
+  <a href="https://t.me/+8613790100786" target="_blank">✈️ Telegram</a>
 </div>
 
 <div class="banner">
-  <h2>🔥 50% OFF Auto-Applied</h2>
-  <p>No coupon needed · Amazon US & EU shipping</p>
+  <h2>🔥 Limited Time 50% OFF</h2>
+  <p class="p1">Hermit Crab Special · No Coupon Needed</p>
+  <p class="p2">Amazon US / EU · Local Warehouse Direct Ship</p>
 </div>
 
 <div class="store-badge">
@@ -84,19 +98,17 @@ body{background:#0d0d0d;color:#fff;padding:16px;min-height:100vh}
 </div>
 
 <div class="footer">
-  <div class="social">
-    <a href="https://www.tiktok.com/@hermitcrabcomcn" target="_blank">🎵 TikTok</a>
-    <a href="https://www.instagram.com/hermitcrabchen" target="_blank">📷 Instagram</a>
-    <a href="https://www.pinterest.com/2023hermitcrab/" target="_blank">📌 Pinterest</a>
-    <a href="https://x.com/2023hermit63162" target="_blank">🐦 X (Twitter)</a>
-    <a href="https://www.facebook.com/hermit.crab.chen.2025" target="_blank">📘 Facebook</a>
-    <a href="https://www.reddit.com/r/HermitCrabSmokeClub/" target="_blank">🤖 Reddit</a>
-    <a href="https://www.youtube.com/@HailuChen-xe1yf" target="_blank">▶️ YouTube</a>
-  </div>
   <p>© 2026 HERMIT CRAB · All Rights Reserved</p>
   <p style="font-size:11px;color:#444">As an Amazon Associate we earn from qualifying purchases.</p>
-
 </div>
+
+<div class="qr-section">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://2023hermitcrab-hub.github.io/HERMIT-CRAB/" alt="Scan me">
+  <div class="scan-text">📱 Scan me</div>
+  <div class="scan-sub">Official Store · Support · Social</div>
+</div>
+
 </div>
 </body>
 </html>
+
